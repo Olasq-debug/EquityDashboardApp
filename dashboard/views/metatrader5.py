@@ -1,7 +1,8 @@
 from django.shortcuts import render
 import MetaTrader5 as mt
-from ..models import AccountInfo
-
+#from ..models import AccountInfo
+from core.settings import *
+import utils
 
 #Initialize Metatrader5
 if not mt.initialize():
@@ -21,12 +22,17 @@ def get_Deriv_Data():
     account_info = mt.account_info()
 
     #saving account info to database
-    accountInfo1 = AccountInfo(
-    login = account_info.login,
-    balance = account_info.balance,
-    equity = account_info.equity,
-    )
-    "".join(accountInfo1.save())
+    utils.myCollection.insert_one({
+        "login" : account_info.login,
+        "balance" : account_info.balance,
+        "equity" : account_info.equity,
+    })
+    # accountInfo1 = AccountInfo(
+    # login = account_info.login,
+    # balance = account_info.balance,
+    # equity = account_info.equity,
+    # )
+    # "".join(accountInfo1.save())
     return 
 
 
@@ -42,12 +48,16 @@ def getICMarketsEU():
     account_info = mt.account_info()
 
     #saving account info to database
-    accountInfo2 = AccountInfo.objects.create(
-         login = account_info.login,
-         balance = account_info.balance,
-         equity = account_info.equity,
-    )
-    "".join(accountInfo2.save())
+    # accountInfo2 = AccountInfo(
+    #      login = account_info.login,
+    #      balance = account_info.balance,
+    #      equity = account_info.equity,
+    # )
+    utils.myCollection.insert_one({
+        "login" : account_info.login,
+        "balance" : account_info.balance,
+        "equity" : account_info.equity,
+    })
     return 
 
 #getICMarketsEU1
@@ -62,12 +72,17 @@ def getICMarketsEU1():
     account_info = mt.account_info()
 
     #saving account info to database
-    accountInfo3 = AccountInfo.objects.create(
-        login = account_info.login,
-        balance = account_info.balance,
-        equity = account_info.equity
-    )
-    "".join(accountInfo3.save())
+    utils.myCollection.insert_one({
+        "login" : account_info.login,
+        "balance" : account_info.balance,
+        "equity" : account_info.equity,
+    })
+    # accountInfo3 = AccountInfo(
+    #     login = account_info.login,
+    #     balance = account_info.balance,
+    #     equity = account_info.equity
+    # )
+    # "".join(accountInfo3.save())
     return
 
     

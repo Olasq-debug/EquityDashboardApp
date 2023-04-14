@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,16 +86,13 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 #Database connection
 
-class ConnectionError(Exception):
-    pass
 
-from mongoengine import connect
-try:
-    connected = connect(db="equityDatabase", host ="127.0.0.1", port=27017)
-    if connected:
-        print("Mongoengine is connected")
-except ConnectionError:
-    raise ConnectionError
+# from mongoengine import connect
+# myConnection =  connect(host='mongodb://localhost:27017/equityDatabase')
+# if myConnection:
+#     print("Connected!!!")
+# else:
+#     print("Not connected")
 
 
 
